@@ -23,7 +23,6 @@ const ImageForm = () => {
   };
 
   const handleSubmit = async (event) => {
-
     event.preventDefault();
     const dataList = await compiler.compileImageTargets(images, (progress) => {
         console.log(progress);
@@ -36,21 +35,21 @@ const ImageForm = () => {
     console.log("Selected images:", images);
   };
 
-  const downloadHandler = useCallback(() => {
+  const downloadHandler  = () => {
     var aLink = window.document.createElement('a');
     aLink.download = 'targets.mind';
     aLink.href = mapSrc;
     aLink.click();
     window.URL.revokeObjectURL(aLink.href);
-  }, []);
+  }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} multiple />
         <button type="submit">Submit</button>
-        <button onClick={downloadHandler}>download</button>
       </form>
+      <button  onClick={downloadHandler}>download</button>
     </div>
   );
 };

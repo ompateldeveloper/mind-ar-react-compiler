@@ -1,9 +1,14 @@
 import React, { useCallback, useState } from 'react';
+
+
 import * as mind from "mind-ar/dist/mindar-image.prod"
 const ImageForm = () => {
   const [images, setImages] = useState([]);
   const [mapSrc, setMapSrc] = useState();
     const compiler = new mind.Compiler()
+
+
+
   const handleFileChange = (event) => {
     const files = event.target.files;
     if (files) {
@@ -26,7 +31,7 @@ const ImageForm = () => {
     const exportedBuffer = await compiler.exportData();
     const blob = new Blob([exportedBuffer]);
     const mindSrc = window.URL.createObjectURL(blob)
-    setMapSrc(mindSrc) //mindSrc is final source of blob
+    setMapSrc(mindSrc)
     console.log(dataList);
     console.log("Selected images:", images);
   };
